@@ -1481,7 +1481,7 @@ const uu = "/assets/svg/imgExtension-logo.chunk.svg",
                 className: "w-full flex-grow rounded-md bg-black-200 p-[14px]",
                 children: [l("h3", {
                     className: "mb-2 text-left text-[20px] font-medium text-white",
-                    children: "X Twitter Scraper"
+                    children: "X Yearly Summary"
                 }), D ? f(Pe, {
                     children: [f("div", {
                         className: "h-80 w-full overflow-y-auto text-left text-[10px] text-white",
@@ -1609,21 +1609,23 @@ const uu = "/assets/svg/imgExtension-logo.chunk.svg",
                         className: "w-full rounded-md bg-orange-main py-2 text-[15px] font-bold text-black-100 duration-300 ease-in hover:opacity-75",
                         onClick: () => wa(),
                         children: "Scrape Now"
-                    }), l("div", {
-                        className: "mt-2 w-full rounded-md bg-white text-center transition hover:opacity-80",
-                        children: l("a", {
-                            href: "https://www.buymeacoffee.com/samsek",
-                            target: "_blank",
-                            rel: "noreferrer",
-                            children: l("img", {
-                                src: "https://cdn.buymeacoffee.com/buttons/default-white.png",
-                                alt: "Buy Me A Coffee",
-                                height: "41",
-                                width: "174",
-                                className: "mx-auto rounded-md"
-                            })
-                        })
-                    })]
+                    })
+                    // , l("div", {
+                    //     className: "mt-2 w-full rounded-md bg-white text-center transition hover:opacity-80",
+                    //     children: l("a", {
+                    //         href: "https://www.buymeacoffee.com/",
+                    //         target: "_blank",
+                    //         rel: "noreferrer",
+                    //         children: l("img", {
+                    //             src: "https://cdn.buymeacoffee.com/buttons/default-white.png",
+                    //             alt: "Buy Me A Coffee",
+                    //             height: "41",
+                    //             width: "174",
+                    //             className: "mx-auto rounded-md"
+                    //         })
+                    //     })
+                    // })
+                    ]
                 })]
             })]
         })

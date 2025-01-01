@@ -2465,7 +2465,7 @@ function r1({
                             rel: "noopener noreferrer",
                             href: "https://nighthustle.co",
                             className: "text-[25px] font-semibold",
-                            children: "X Twitter Scraper"
+                            children: "X Yearly Summary"
                         })]
                     }), te("div", {
                         className: "hidden md:flex md:gap-x-6",
@@ -2499,21 +2499,23 @@ function r1({
                                 children: "Export CSV"
                             })
                         })
-                    }), C("span", {
-                        className: "rounded-md bg-white py-[2px] px-2 transition hover:opacity-80",
-                        children: C("a", {
-                            href: "https://www.buymeacoffee.com/samsek",
-                            target: "_blank",
-                            rel: "noreferrer",
-                            children: C("img", {
-                                src: "https://cdn.buymeacoffee.com/buttons/default-white.png",
-                                alt: "Buy Me A Coffee",
-                                height: "41",
-                                width: "174",
-                                className: "rounded-md"
-                            })
-                        })
-                    }), C("div", {
+                    }), 
+                    // C("span", {
+                    //     className: "rounded-md bg-white py-[2px] px-2 transition hover:opacity-80",
+                    //     children: C("a", {
+                    //         href: "https://www.buymeacoffee.com/samsek",
+                    //         target: "_blank",
+                    //         rel: "noreferrer",
+                    //         children: C("img", {
+                    //             src: "https://cdn.buymeacoffee.com/buttons/default-white.png",
+                    //             alt: "Buy Me A Coffee",
+                    //             height: "41",
+                    //             width: "174",
+                    //             className: "rounded-md"
+                    //         })
+                    //     })
+                    // }), 
+                    C("div", {
                         className: "-mr-1 md:hidden",
                         children: C(e1, {
                             onChangeTab: t
@@ -2669,89 +2671,90 @@ function l1(e) {
     })(e)
 }
 
-function c1({
-    profile: e
-}) {
-    return C("div", {
-        children: C("div", {
-            className: "mx-auto max-w-7xl px-4 sm:px-6 lg:px-8",
-            children: te("div", {
-                className: "md:py-18 rounded-lg bg-[url('/assets/img/bg.jpg')] bg-cover px-8 py-8 md:flex md:items-center",
-                children: [C("div", {
-                    className: "m-0 md:mr-12",
-                    children: te("div", {
-                        className: "relative mx-auto w-32",
-                        children: [C("img", {
-                            className: "relative z-10 h-32 w-32 rounded-full",
-                            src: mt.exports.get(e, "author.image.contentUrl", ""),
-                            alt: "profile image"
-                        }), C("div", {
-                            className: "absolute top-0 left-0 h-full w-full rounded-full bg-white outline outline-[3px] outline-[#333333]"
-                        })]
-                    })
-                }), te("h2", {
-                    className: "mt-8 text-center tracking-tight text-white md:mt-0 md:flex-1 md:text-left",
-                    children: [C("p", {
-                        className: "mb-2 block text-3xl font-medium",
-                        children: `${mt.exports.get(e,"author.givenName","")} (@${mt.exports.get(e,"author.additionalName","")})`
-                    }), C("p", {
-                        className: "font-regular block whitespace-normal text-base",
-                        children: mt.exports.get(e, "author.description", "")
-                    }), te("div", {
-                        className: "font-regular text-base",
-                        children: [te("div", {
-                            className: "w-full",
-                            children: [mt.exports.get(e, "author.homeLocation.name", "") && te("div", {
-                                className: "mr-4 inline-block",
-                                children: [C(hy, {
-                                    className: "-mt-1 mr-2 inline-block align-middle"
-                                }), C("div", {
-                                    className: "inline-block align-middle",
-                                    children: mt.exports.get(e, "author.homeLocation.name", "")
-                                })]
-                            }), mt.exports.get(e, "dateCreated", "") && te("div", {
-                                className: "mr-4 inline-block",
-                                children: [C(dy, {
-                                    className: "-mt-1 mr-2 inline-block align-middle"
-                                }), C("div", {
-                                    className: "inline-block align-middle",
-                                    children: Or(mt.exports.get(e, "dateCreated", "")).format("DD-MM-YYYY")
-                                })]
-                            })]
-                        }), te("div", {
-                            className: "w-full",
-                            children: [te("div", {
-                                className: "mr-4 inline-block",
-                                children: [C(py, {
-                                    className: "mr-2 inline-block align-middle"
-                                }), te("div", {
-                                    className: "inline-block align-middle",
-                                    children: [mt.exports.get(e, "author.interactionStatistic[0].userInteractionCount", 0), " ", "Follows"]
-                                })]
-                            }), te("div", {
-                                className: "mr-4 inline-block",
-                                children: [C(l1, {
-                                    className: "mr-2 inline-block align-middle"
-                                }), te("div", {
-                                    className: "inline-block align-middle",
-                                    children: [mt.exports.get(e, "author.interactionStatistic[1].userInteractionCount", 0), " ", "Friends"]
-                                })]
-                            }), te("div", {
-                                className: "mr-4 inline-block",
-                                children: [C(bp, {
-                                    className: "mr-2 inline-block align-middle"
-                                }), te("div", {
-                                    className: "inline-block align-middle",
-                                    children: [mt.exports.get(e, "author.interactionStatistic[2].userInteractionCount", 0), " ", "Tweets"]
-                                })]
-                            })]
-                        })]
-                    })]
-                })]
-            })
-        })
-    })
-}
+// function c1({
+//     profile: e
+// }) {
+//     return C("div", {
+//         children: C("div", {
+//             className: "mx-auto max-w-7xl px-4 sm:px-6 lg:px-8",
+//             children: te("div", {
+//                 className: "md:py-18 rounded-lg bg-[url('/assets/img/bg.jpg')] bg-cover px-8 py-8 md:flex md:items-center",
+//                 children: [C("div", {
+//                     className: "m-0 md:mr-12",
+//                     children: te("div", {
+//                         className: "relative mx-auto w-32",
+//                         children: [C("img", {
+//                             className: "relative z-10 h-32 w-32 rounded-full",
+//                             src: mt.exports.get(e, "author.image.contentUrl", ""),
+//                             alt: "profile image"
+//                         }), C("div", {
+//                             className: "absolute top-0 left-0 h-full w-full rounded-full bg-white outline outline-[3px] outline-[#333333]"
+//                         })]
+//                     })
+//                 }), te("h2", {
+//                     className: "mt-8 text-center tracking-tight text-white md:mt-0 md:flex-1 md:text-left",
+//                     children: [C("p", {
+//                         className: "mb-2 block text-3xl font-medium",
+//                         children: `${mt.exports.get(e,"author.givenName","")} (@${mt.exports.get(e,"author.additionalName","")})`
+//                     }), C("p", {
+//                         className: "font-regular block whitespace-normal text-base",
+//                         children: mt.exports.get(e, "author.description", "")
+//                     }), te("div", {
+//                         className: "font-regular text-base",
+//                         children: [te("div", {
+//                             className: "w-full",
+//                             children: [mt.exports.get(e, "author.homeLocation.name", "") && te("div", {
+//                                 className: "mr-4 inline-block",
+//                                 children: [C(hy, {
+//                                     className: "-mt-1 mr-2 inline-block align-middle"
+//                                 }), C("div", {
+//                                     className: "inline-block align-middle",
+//                                     children: mt.exports.get(e, "author.homeLocation.name", "")
+//                                 })]
+//                             }), mt.exports.get(e, "dateCreated", "") && te("div", {
+//                                 className: "mr-4 inline-block",
+//                                 children: [C(dy, {
+//                                     className: "-mt-1 mr-2 inline-block align-middle"
+//                                 }), C("div", {
+//                                     className: "inline-block align-middle",
+//                                     children: Or(mt.exports.get(e, "dateCreated", "")).format("DD-MM-YYYY")
+//                                 })]
+//                             })]
+//                         }), te("div", {
+//                             className: "w-full",
+//                             children: [te("div", {
+//                                 className: "mr-4 inline-block",
+//                                 children: [C(py, {
+//                                     className: "mr-2 inline-block align-middle"
+//                                 }), te("div", {
+//                                     className: "inline-block align-middle",
+//                                     children: [mt.exports.get(e, "author.interactionStatistic[0].userInteractionCount", 0), " ", "Follows"]
+//                                 })]
+//                             }), te("div", {
+//                                 className: "mr-4 inline-block",
+//                                 children: [C(l1, {
+//                                     className: "mr-2 inline-block align-middle"
+//                                 }), te("div", {
+//                                     className: "inline-block align-middle",
+//                                     children: [mt.exports.get(e, "author.interactionStatistic[1].userInteractionCount", 0), " ", "Friends"]
+//                                 })]
+//                             }), te("div", {
+//                                 className: "mr-4 inline-block",
+//                                 children: [C(bp, {
+//                                     className: "mr-2 inline-block align-middle"
+//                                 }), te("div", {
+//                                     className: "inline-block align-middle",
+//                                     children: [mt.exports.get(e, "author.interactionStatistic[2].userInteractionCount", 0), " ", "Tweets"]
+//                                 })]
+//                             })]
+//                         })]
+//                     })]
+//                 })]
+//             })
+//         })
+//     })
+// }
+
 var Xp = {
     exports: {}
 };
@@ -26186,7 +26189,7 @@ function QL() {
                     children: [te("div", {
                         className: "flex gap-x-6",
                         children: [C("a", {
-                            href: "https://x.com/night_hustle",
+                            href: "https://x.com/MingfeiGuo",
                             className: "group",
                             target: "_blank",
                             rel: "noreferrer",
@@ -26194,25 +26197,28 @@ function QL() {
                             children: C(bp, {
                                 className: "h-6 w-6 text-white hover:text-gray-200"
                             })
-                        }), C("a", {
-                            href: "https://discord.gg/TvuTpHGz",
-                            className: "group",
-                            target: "_blank",
-                            rel: "noreferrer",
-                            "aria-label": "Rearrange on Discord",
-                            children: C(my, {
-                                className: "h-6 w-6 text-white hover:text-gray-200"
-                            })
-                        }), C("a", {
-                            href: "https://www.youtube.com/@nighthustle",
-                            className: "group",
-                            target: "_blank",
-                            rel: "noreferrer",
-                            "aria-label": "Rearrange on Youtube",
-                            children: C(vy, {
-                                className: "h-6 w-6 text-white hover:text-gray-200"
-                            })
-                        })]
+                        })
+                        // , C("a", {
+                        //     href: "https://discord.gg/TvuTpHGz",
+                        //     className: "group",
+                        //     target: "_blank",
+                        //     rel: "noreferrer",
+                        //     "aria-label": "Rearrange on Discord",
+                        //     children: C(my, {
+                        //         className: "h-6 w-6 text-white hover:text-gray-200"
+                        //     })
+                        // })
+                        // , C("a", {
+                        //     href: "https://www.youtube.com/@nighthustle",
+                        //     className: "group",
+                        //     target: "_blank",
+                        //     rel: "noreferrer",
+                        //     "aria-label": "Rearrange on Youtube",
+                        //     children: C(vy, {
+                        //         className: "h-6 w-6 text-white hover:text-gray-200"
+                        //     })
+                        // })
+                          ]
                     }), te("p", {
                         className: "mt-6 text-sm text-white sm:mt-0",
                         children: ["Copyright \xA9 ", new Date().getFullYear(), " Nighthustle. All rights reserved."]
