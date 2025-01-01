@@ -26198,27 +26198,16 @@ function QL() {
                                 className: "h-6 w-6 text-white hover:text-gray-200"
                             })
                         })
-                        // , C("a", {
-                        //     href: "https://discord.gg/TvuTpHGz",
-                        //     className: "group",
-                        //     target: "_blank",
-                        //     rel: "noreferrer",
-                        //     "aria-label": "Rearrange on Discord",
-                        //     children: C(my, {
-                        //         className: "h-6 w-6 text-white hover:text-gray-200"
-                        //     })
-                        // })
-                        // , C("a", {
-                        //     href: "https://www.youtube.com/@nighthustle",
-                        //     className: "group",
-                        //     target: "_blank",
-                        //     rel: "noreferrer",
-                        //     "aria-label": "Rearrange on Youtube",
-                        //     children: C(vy, {
-                        //         className: "h-6 w-6 text-white hover:text-gray-200"
-                        //     })
-                        // })
-                          ]
+                        , C("a", {
+                            href: "https://github.com/guoriyue",
+                            className: "group",
+                            target: "_blank",
+                            rel: "noreferrer",
+                            "aria-label": "Rearrange on Github",
+                            children: C(my, {
+                                className: "h-6 w-6 text-white hover:text-gray-200"
+                            })
+                        })]
                     }), te("p", {
                         className: "mt-6 text-sm text-white sm:mt-0",
                         children: ["Copyright \xA9 ", new Date().getFullYear(), " Nighthustle. All rights reserved."]
