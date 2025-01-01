@@ -20741,14 +20741,21 @@ function GetSummaryImage({
   const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
   
   const handleTwitterShare = () => {
-      const tweetText = encodeURIComponent("Check out my Twitter analytics summary!");
-      const shareUrl = encodeURIComponent(currentUrl);
-      const twitterUrl = `https://twitter.com/intent/tweet?text=${tweetText}&url=${shareUrl}`;
-      window.open(twitterUrl, '_blank', 'width=550,height=420');
+    // Twitter's Web Intent URL
+    const tweetText = encodeURIComponent("Check out my Twitter analytics summary!");
+    
+    // Add all image URLs to the tweet
+    const imageUrls = mockImages.map(url => encodeURIComponent(url)).join(',');
+    
+    // Construct Twitter Web Intent URL with media
+    const twitterUrl = `https://twitter.com/intent/tweet?text=${tweetText}&media=${imageUrls}`;
+    
+    // Open Twitter share dialog
+    window.open(twitterUrl, '_blank', 'width=550,height=420');
   };
 
   return te("div", {
-      className: "my-10",
+      className: "mx-auto max-w-7xl px-4 md:px-6 lg:px-8",
       children: [
           te("div", {
               className: "flex justify-between items-center mb-6",
