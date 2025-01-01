@@ -1481,7 +1481,7 @@ const uu = "/assets/svg/imgExtension-logo.chunk.svg",
                 className: "w-full flex-grow rounded-md bg-black-200 p-[14px]",
                 children: [l("h3", {
                     className: "mb-2 text-left text-[20px] font-medium text-white",
-                    children: "X Yearly Summary"
+                    children: "X Twitter Scraper"
                 }), D ? f(Pe, {
                     children: [f("div", {
                         className: "h-80 w-full overflow-y-auto text-left text-[10px] text-white",
@@ -1552,7 +1552,7 @@ const uu = "/assets/svg/imgExtension-logo.chunk.svg",
                                 className: "border-none bg-transparent text-left focus:outline-none",
                                 placeholder: "From Year",
                                 type: "number",
-                                value: o,
+                                value: 2024,
                                 onChange: u => g(u.target.value),
                                 min: 2006,
                                 max: new Date().getFullYear()
@@ -1560,7 +1560,7 @@ const uu = "/assets/svg/imgExtension-logo.chunk.svg",
                                 className: "border-none bg-transparent text-left focus:outline-none",
                                 placeholder: "From Month",
                                 type: "number",
-                                value: d,
+                                value: 1,
                                 onChange: u => c(u.target.value),
                                 min: 1,
                                 max: 12
@@ -1582,7 +1582,7 @@ const uu = "/assets/svg/imgExtension-logo.chunk.svg",
                                 className: "border-none bg-transparent text-left focus:outline-none",
                                 placeholder: "To Year",
                                 type: "number",
-                                value: T,
+                                value: 2024,
                                 onChange: u => w(u.target.value),
                                 min: o,
                                 max: new Date().getFullYear()
@@ -1590,7 +1590,7 @@ const uu = "/assets/svg/imgExtension-logo.chunk.svg",
                                 className: "border-none bg-transparent text-left focus:outline-none",
                                 placeholder: "To Month",
                                 type: "number",
-                                value: C,
+                                value: 12,
                                 onChange: u => O(u.target.value),
                                 min: 1,
                                 max: 12
