@@ -1,22 +1,27 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="27.361" height="24.334" viewBox="0 0 27.361 24.334">
   <defs>
-    <clipPath id="clip-path">
-      <rect id="Rectangle_10" width="27.361" height="24.334" fill="#f4b651"/>
-    </clipPath>
+    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFD280"/>
+      <stop offset="100%" style="stop-color:#f4b651"/>
+    </linearGradient>
   </defs>
   <g transform="translate(0 0)">
     <!-- First line of the X -->
     <path 
-      d="M2 2 L25.361 22.334" 
-      stroke="#f4b651" 
-      stroke-width="4" 
-      stroke-linecap="round"/>
+      d="M3 2 L24.361 21.334" 
+      stroke="url(#logoGradient)" 
+      stroke-width="4.5" 
+      stroke-linecap="round"
+      filter="drop-shadow(0px 1px 2px rgba(0,0,0,0.2))"
+    />
     
     <!-- Second line of the X -->
     <path 
-      d="M2 22.334 L25.361 2" 
-      stroke="#f4b651" 
-      stroke-width="4" 
-      stroke-linecap="round"/>
+      d="M3 21.334 L24.361 2" 
+      stroke="url(#logoGradient)" 
+      stroke-width="4.5" 
+      stroke-linecap="round"
+      filter="drop-shadow(0px 1px 2px rgba(0,0,0,0.2))"
+    />
   </g>
 </svg>
