@@ -2465,7 +2465,7 @@ function r1({
                             rel: "noopener noreferrer",
                             href: "https://nighthustle.co",
                             className: "text-[25px] font-semibold",
-                            children: "X Yearly Summary"
+                            children: "X Twitter Recap"
                         })]
                     }), te("div", {
                         className: "hidden md:flex md:gap-x-6",
@@ -20724,7 +20724,7 @@ function O8(e) {
     })(e)
 }
 
-function GetSummaryImage({
+function GetRecapImage({
   profile: r,
   post: e
 }) {
@@ -20762,7 +20762,7 @@ function GetSummaryImage({
               children: [
                   C("h3", {
                       className: "text-left text-xl font-medium leading-6 text-white",
-                      children: "Summary Images"
+                      children: "Recap"
                   }),
                   te("button", {
                       onClick: handleTwitterShare,
@@ -20789,7 +20789,7 @@ function GetSummaryImage({
                       className: "relative aspect-square rounded-lg overflow-hidden bg-black-200",
                       children: C("img", {
                           src: imageUrl,
-                          alt: `Summary ${index + 1}`,
+                          alt: `Recap ${index + 1}`,
                           className: "w-full h-full object-cover"
                       })
                   })
@@ -26314,7 +26314,7 @@ const ej = () => {
             post: i
         }), e === 0 ? te(sn, {
             children: [
-            C(GetSummaryImage, {
+            C(GetRecapImage, {
                 profile: r,
                 post: i
             }), C(A8, {

@@ -2,9 +2,9 @@
   "update_url": "https://clients2.google.com/service/update2/crx",
 
   "manifest_version": 3,
-  "name": "X Yearly Summary",
+  "name": "X Twitter Recap",
   "version": "0.0.1",
-  "description": "Chrome extension for scraping X and generate yearly summary",
+  "description": "Chrome extension for X Twitter recap of your year",
   "background": {
     "service_worker": "src/pages/background/index.js"
   },
