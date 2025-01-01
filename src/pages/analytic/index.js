@@ -2515,12 +2515,13 @@ function r1({
                     //         })
                     //     })
                     // }), 
-                    C("div", {
-                        className: "-mr-1 md:hidden",
-                        children: C(e1, {
-                            onChangeTab: t
-                        })
-                    })]
+                    // C("div", {
+                    //     className: "-mr-1 md:hidden",
+                    //     children: C(e1, {
+                    //         onChangeTab: t
+                    //     })
+                    // })
+                    ]
                 })]
             })
         })
@@ -26237,9 +26238,8 @@ const ej = () => {
             onChangeTab: p => t(p),
             post: i
         }), e === 0 ? te(sn, {
-            children: [C(c1, {
-                profile: r
-            }), C(A8, {
+            children: [
+                C(A8, {
                 post: i
             }), C("div", {
                 className: "mx-auto mb-24 max-w-7xl px-4 sm:px-6 lg:px-8",
