@@ -1555,7 +1555,7 @@ const uu = "/assets/svg/imgExtension-logo.chunk.svg",
                                 value: o,
                                 onChange: u => g(u.target.value),
                                 min: 2006,
-                                max: new Date().getFullYear()
+                                max: new Date().getFullYear() - 1
                             }), l("input", {
                                 className: "border-none bg-transparent text-left focus:outline-none",
                                 placeholder: "From Month",
@@ -1585,7 +1585,7 @@ const uu = "/assets/svg/imgExtension-logo.chunk.svg",
                                 value: T,
                                 onChange: u => w(u.target.value),
                                 min: o,
-                                max: new Date().getFullYear()
+                                max: new Date().getFullYear() - 1
                             }), l("input", {
                                 className: "border-none bg-transparent text-left focus:outline-none",
                                 placeholder: "To Month",
