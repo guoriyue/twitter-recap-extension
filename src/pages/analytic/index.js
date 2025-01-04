@@ -20804,114 +20804,111 @@ function GetRecapImage({
   profile: r,
   post: e
 }) {
-  const fetchImages = async () => {
-      try {
-          // Show loading state
-          return te("div", {
-              className: "mx-auto max-w-7xl px-4 md:px-6 lg:px-8",
+  // Initial render with loading state
+  const loadingView = te("div", {
+      className: "mx-auto max-w-7xl px-4 md:px-6 lg:px-8",
+      children: [
+          C("h3", {
+              className: "text-left text-xl font-medium leading-6 text-white mb-6",
+              children: "Summary Images"
+          }),
+          C("div", {
+              className: "flex items-center justify-center h-64",
+              children: C("p", {
+                  className: "text-white",
+                  children: "Loading images..."
+              })
+          })
+      ]
+  });
+
+  // Make API call
+  fetch('http://107.173.2.166:5000/generate-images', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+          profile: r,
+          posts: e
+      })
+  })
+  .then(response => response.json())
+  .then(base64Images => {
+      // Convert base64 to image URLs
+      const imageUrls = base64Images.map(base64String => 
+          `data:image/jpeg;base64,${base64String}`
+      );
+      return imageUrls;
+  })
+  .catch(error => {
+      console.error('Error fetching images:', error);
+      // Fallback to placeholder images
+      return [
+          '/assets/img/error.jpg',
+          '/assets/img/error.jpg',
+          '/assets/img/error.jpg',
+          '/assets/img/error.jpg',
+          '/assets/img/error.jpg',
+          '/assets/img/error.jpg'
+      ];
+  });
+
+  // Return the initial loading view
+  return te("div", {
+      className: "mx-auto max-w-7xl px-4 md:px-6 lg:px-8",
+      children: [
+          te("div", {
+              className: "flex justify-between items-center mb-6",
               children: [
                   C("h3", {
-                      className: "text-left text-xl font-medium leading-6 text-white mb-6",
+                      className: "text-left text-xl font-medium leading-6 text-white",
                       children: "Summary Images"
                   }),
-                  C("div", {
-                      className: "flex items-center justify-center h-64",
-                      children: C("p", {
-                          className: "text-white",
-                          children: "Loading images..."
-                      })
+                  te("button", {
+                      onClick: () => {
+                          const tweetText = encodeURIComponent("Check out my Twitter analytics summary!");
+                          const twitterUrl = `https://twitter.com/intent/tweet?text=${tweetText}`;
+                          window.open(twitterUrl, '_blank', 'width=550,height=420');
+                      },
+                      className: "inline-flex items-center px-4 py-2 rounded-md bg-[#1DA1F2] hover:bg-[#1a8cd8] transition-colors text-white font-medium text-sm",
+                      children: [
+                          C("svg", {
+                              className: "w-5 h-5 mr-2",
+                              fill: "currentColor",
+                              viewBox: "0 0 24 24",
+                              children: C("path", {
+                                  d: "M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"
+                              })
+                          }),
+                          "Share on Twitter"
+                      ]
                   })
               ]
-          });
-
-          // Make API call
-          const response = await fetch('http://107.173.2.166:5000/generate_recap', {
-              method: 'POST',
-              headers: {
-                  'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({
-                  profile: r,
-                  posts: e
-              })
-          });
-
-          if (!response.ok) {
-              throw new Error('Network response was not ok');
-          }
-
-          // Get base64 images from response
-          const base64Images = await response.json();
-          
-          // Convert base64 to image URLs
-          const imageUrls = base64Images.map(base64String => 
-              `data:image/jpeg;base64,${base64String}`
-          );
-
-          return renderImages(imageUrls);
-
-      } catch (error) {
-          console.error('Error fetching images:', error);
-          // Fallback to placeholder images
-          return renderImages([
-              '/assets/img/placeholder.jpg',
-              '/assets/img/placeholder.jpg',
-              '/assets/img/placeholder.jpg',
-              '/assets/img/placeholder.jpg',
-              '/assets/img/placeholder.jpg',
-              '/assets/img/placeholder.jpg'
-          ]);
-      }
-  };
-
-  const renderImages = (images) => {
-      return te("div", {
-          className: "mx-auto max-w-7xl px-4 md:px-6 lg:px-8",
-          children: [
-              te("div", {
-                  className: "flex justify-between items-center mb-6",
-                  children: [
-                      C("h3", {
-                          className: "text-left text-xl font-medium leading-6 text-white",
-                          children: "Summary Images"
-                      }),
-                      te("button", {
-                          onClick: handleTwitterShare,
-                          className: "inline-flex items-center px-4 py-2 rounded-md bg-[#1DA1F2] hover:bg-[#1a8cd8] transition-colors text-white font-medium text-sm",
-                          children: [
-                              C("svg", {
-                                  className: "w-5 h-5 mr-2",
-                                  fill: "currentColor",
-                                  viewBox: "0 0 24 24",
-                                  children: C("path", {
-                                      d: "M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"
-                                  })
-                              }),
-                              "Share on Twitter"
-                          ]
+          }),
+          C("div", {
+              className: "grid grid-cols-2 md:grid-cols-3 gap-4",
+              children: [
+                  '/assets/img/error.jpg',
+                  '/assets/img/error.jpg',
+                  '/assets/img/error.jpg',
+                  '/assets/img/error.jpg',
+                  '/assets/img/error.jpg',
+                  '/assets/img/error.jpg'
+              ].map((imageUrl, index) => 
+                  C("div", {
+                      key: index,
+                      className: "relative aspect-square rounded-lg overflow-hidden bg-black-200",
+                      children: C("img", {
+                          src: imageUrl,
+                          alt: `Summary ${index + 1}`,
+                          className: "w-full h-full object-cover"
                       })
-                  ]
-              }),
-              C("div", {
-                  className: "grid grid-cols-2 md:grid-cols-3 gap-4",
-                  children: images.map((imageUrl, index) => 
-                      C("div", {
-                          key: index,
-                          className: "relative aspect-square rounded-lg overflow-hidden bg-black-200",
-                          children: C("img", {
-                              src: imageUrl,
-                              alt: `Summary ${index + 1}`,
-                              className: "w-full h-full object-cover"
-                          })
-                      })
-                  )
-              })
-          ]
-      });
-  };
-
-  // Initial render with loading state, then fetch images
-  return fetchImages();
+                  })
+              )
+          })
+      ]
+  });
 }
 
 function A8({

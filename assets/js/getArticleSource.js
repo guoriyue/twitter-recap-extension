@@ -13,7 +13,9 @@ if (!window.retrievePostData) {
       window.waitTill(1000);
     }
     var articleData = [];
+    console.log(article);
     for (const element of article) {
+      console.log(element);
       var timeDom = element.querySelector("time");
       var textsDom = element.querySelectorAll("[data-testid=tweetText] > *");
       var likeDom = element.querySelector("[data-testid=like]");
@@ -24,6 +26,45 @@ if (!window.retrievePostData) {
       var videosDom = element.querySelectorAll(
         "[data-testid=tweetPhoto] video"
       );
+
+      // Get like and retweet lists
+      var likeList = [];
+      var retweetList = [];
+
+      // Click to open like modal if exists
+      if (likeDom) {
+        likeDom.click();
+        await window.waitTill(1000);
+        const likeModal = document.querySelector('[aria-modal="true"]');
+        if (likeModal) {
+          const likeUsers = likeModal.querySelectorAll('[data-testid="User-Name"]');
+          likeUsers.forEach(user => {
+            likeList.push(user.innerText);
+          });
+          // Close modal
+          document.querySelector('[data-testid="app-bar-close"]')?.click();
+          await window.waitTill(500);
+        }
+      }
+
+      // Click to open retweet modal if exists
+      if (retweetDom) {
+        retweetDom.click();
+        await window.waitTill(1000);
+        const retweetModal = document.querySelector('[aria-modal="true"]');
+        if (retweetModal) {
+          const retweetUsers = retweetModal.querySelectorAll('[data-testid="User-Name"]');
+          retweetUsers.forEach(user => {
+            retweetList.push(user.innerText);
+          });
+          // Close modal
+          document.querySelector('[data-testid="app-bar-close"]')?.click();
+          await window.waitTill(500);
+        }
+      }
+
+      console.log(likeList, retweetList);
+
       var postType = "text";
       var image = [];
       var video = [];

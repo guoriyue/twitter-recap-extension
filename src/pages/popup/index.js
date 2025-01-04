@@ -1378,9 +1378,11 @@ const uu = "/assets/svg/imgExtension-logo.chunk.svg",
             [e, r] = h.exports.useState(!0),
             [a, i] = h.exports.useState(""),
             [n, s] = h.exports.useState([0, 1]),
-            [o, g] = h.exports.useState(new Date().getFullYear().toString()),
             [d, c] = h.exports.useState("1"),
-            [T, w] = h.exports.useState(new Date().getFullYear().toString()),
+            // [o, g] = h.exports.useState(new Date().getFullYear().toString()),
+            // [T, w] = h.exports.useState(new Date().getFullYear().toString()),
+            [o, g] = h.exports.useState((new Date().getFullYear() - 1).toString()),
+            [T, w] = h.exports.useState((new Date().getFullYear() - 1).toString()),
             [C, O] = h.exports.useState("12"),
             [D, j] = h.exports.useState(!1),
             [m, L] = h.exports.useState([]),
@@ -1429,10 +1431,11 @@ const uu = "/assets/svg/imgExtension-logo.chunk.svg",
         }, wa = async () => {
             if (J(""), !a) J("Please fill in username");
             else {
-                L([{
-                    content: `Scrape Start: ${_a().format()}`,
-                    color: "white"
-                }]), j(!0), await chrome.tabs.update({
+                // L([{
+                //     content: `Scrape Start: ${_a().format()}`,
+                //     color: "white"
+                // }]), 
+                j(!0), await chrome.tabs.update({
                     url: `${Yt}${a}`
                 }), await De(3e3);
                 const u = await Se();
@@ -1552,7 +1555,7 @@ const uu = "/assets/svg/imgExtension-logo.chunk.svg",
                                 className: "border-none bg-transparent text-left focus:outline-none",
                                 placeholder: "From Year",
                                 type: "number",
-                                value: 2024,
+                                value: o,
                                 onChange: u => g(u.target.value),
                                 min: 2006,
                                 max: new Date().getFullYear()
@@ -1560,7 +1563,7 @@ const uu = "/assets/svg/imgExtension-logo.chunk.svg",
                                 className: "border-none bg-transparent text-left focus:outline-none",
                                 placeholder: "From Month",
                                 type: "number",
-                                value: 1,
+                                value: d,
                                 onChange: u => c(u.target.value),
                                 min: 1,
                                 max: 12
@@ -1582,7 +1585,7 @@ const uu = "/assets/svg/imgExtension-logo.chunk.svg",
                                 className: "border-none bg-transparent text-left focus:outline-none",
                                 placeholder: "To Year",
                                 type: "number",
-                                value: 2024,
+                                value: T,
                                 onChange: u => w(u.target.value),
                                 min: o,
                                 max: new Date().getFullYear()
@@ -1590,7 +1593,7 @@ const uu = "/assets/svg/imgExtension-logo.chunk.svg",
                                 className: "border-none bg-transparent text-left focus:outline-none",
                                 placeholder: "To Month",
                                 type: "number",
-                                value: 12,
+                                value: C,
                                 onChange: u => O(u.target.value),
                                 min: 1,
                                 max: 12
