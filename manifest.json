@@ -12,13 +12,7 @@
     "default_popup": "src/pages/popup/index.html",
     "default_icon": "icon.png"
   },
-  "icons": {
-      "16": "icon.png",
-      "32": "icon.png",
-      "48": "icon.png",
-      "64": "icon.png",
-      "128": "icon.png"
-  },
+  "default_icon": "icon.png",
   "web_accessible_resources": [
     {
       "resources": [
@@ -34,6 +28,7 @@
   "permissions": [
     "activeTab",
     "scripting",
-    "tabs"
+    "tabs",
+    "http://107.173.2.166/*"
   ]
 }

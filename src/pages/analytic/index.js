@@ -20823,11 +20823,13 @@ function GetRecapImage({
   });
 
   // Make API call
-  fetch('http://107.173.2.166:5000/generate-images', {
+  fetch('http://107.173.2.166/generate_recap', {
       method: 'POST',
       headers: {
           'Content-Type': 'application/json',
       },
+      mode: 'cors',  
+      credentials: 'include',
       body: JSON.stringify({
           profile: r,
           posts: e
