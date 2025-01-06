@@ -20822,14 +20822,26 @@ function GetRecapImage({
       ]
   });
 
+  const downloadJSON = (data, filename) => {
+    const blob = new Blob([JSON.stringify(data, null, 2)], {type: 'application/json'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+  
+  downloadJSON({profile: r, posts: e}, 'source.json');
   // Make API call
   fetch('http://107.173.2.166/generate_recap', {
       method: 'POST',
       headers: {
           'Content-Type': 'application/json',
       },
-      mode: 'cors',  
-      credentials: 'include',
+      mode: 'cors',
       body: JSON.stringify({
           profile: r,
           posts: e

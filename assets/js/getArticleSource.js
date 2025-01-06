@@ -27,43 +27,61 @@ if (!window.retrievePostData) {
         "[data-testid=tweetPhoto] video"
       );
 
-      // Get like and retweet lists
-      var likeList = [];
-      var retweetList = [];
+      // // Get like and retweet lists
+      // var likeList = [];
+      // var retweetList = [];
 
-      // Click to open like modal if exists
-      if (likeDom) {
-        likeDom.click();
-        await window.waitTill(1000);
-        const likeModal = document.querySelector('[aria-modal="true"]');
-        if (likeModal) {
-          const likeUsers = likeModal.querySelectorAll('[data-testid="User-Name"]');
-          likeUsers.forEach(user => {
-            likeList.push(user.innerText);
-          });
-          // Close modal
-          document.querySelector('[data-testid="app-bar-close"]')?.click();
-          await window.waitTill(500);
-        }
-      }
+      // // Click to open like modal if exists
+      // if (likeDom) {
+      //   likeDom.click();
+      //   await window.waitTill(1000);
+      //   const likeModal = document.querySelector('[aria-modal="true"]');
+      //   if (likeModal) {
+      //     const likeUsers = likeModal.querySelectorAll('[data-testid="User-Name"]');
+      //     likeUsers.forEach(user => {
+      //       likeList.push(user.innerText);
+      //     });
+      //     // Close modal
+      //     document.querySelector('[data-testid="app-bar-close"]')?.click();
+      //     await window.waitTill(500);
+      //   }
+      // }
 
-      // Click to open retweet modal if exists
-      if (retweetDom) {
-        retweetDom.click();
-        await window.waitTill(1000);
-        const retweetModal = document.querySelector('[aria-modal="true"]');
-        if (retweetModal) {
-          const retweetUsers = retweetModal.querySelectorAll('[data-testid="User-Name"]');
-          retweetUsers.forEach(user => {
-            retweetList.push(user.innerText);
-          });
-          // Close modal
-          document.querySelector('[data-testid="app-bar-close"]')?.click();
-          await window.waitTill(500);
-        }
-      }
+      // // Click to open retweet modal if exists
+      // if (retweetDom) {
+      //   retweetDom.click();
+      //   await window.waitTill(1000);
+      //   const retweetModal = document.querySelector('[aria-modal="true"]');
+      //   if (retweetModal) {
+      //     const retweetUsers = retweetModal.querySelectorAll('[data-testid="User-Name"]');
+      //     retweetUsers.forEach(user => {
+      //       retweetList.push(user.innerText);
+      //     });
+      //     // Close modal
+      //     document.querySelector('[data-testid="app-bar-close"]')?.click();
+      //     await window.waitTill(500);
+      //   }
+      // }
 
-      console.log(likeList, retweetList);
+      // console.log(likeList, retweetList);
+
+      
+      // Get replies
+      var replies = [];
+      const replyElements = element.querySelectorAll('[data-testid="tweet"]');
+      replyElements.forEach(reply => {
+          const replyText = reply.querySelector('[data-testid="tweetText"]')?.innerText;
+          const replyTime = reply.querySelector('time')?.getAttribute("datetime");
+          const replyUser = reply.querySelector('[data-testid="User-Name"]')?.innerText;
+          
+          if (replyText) {
+              replies.push({
+                  user: replyUser || '',
+                  text: replyText,
+                  time: replyTime || '',
+              });
+          }
+      });
 
       var postType = "text";
       var image = [];
@@ -104,6 +122,7 @@ if (!window.retrievePostData) {
         spread: spreadDom ? spreadDom.innerText : "",
         image: image,
         video: video,
+        replies: replies,
         postType,
       };
       articleData.push(data);
