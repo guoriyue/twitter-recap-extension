@@ -10,9 +10,8 @@
   },
   "action": {
     "default_popup": "src/pages/popup/index.html",
-    "default_icon": "icon.png"
+    "default_icon": "icon_34x34.png"
   },
-  "default_icon": "icon.png",
   "web_accessible_resources": [
     {
       "resources": [
@@ -28,7 +27,9 @@
   "permissions": [
     "activeTab",
     "scripting",
-    "tabs",
-    "http://107.173.2.166/*"
-  ]
+    "tabs"
+  ],
+  "icons": {
+    "128": "icon_128x128.png"
+  }
 }
