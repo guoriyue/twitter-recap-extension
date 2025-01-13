@@ -20835,38 +20835,47 @@ function GetRecapImage({
   }
   
   downloadJSON({profile: r, posts: e}, 'source.json');
-  // Make API call
-  fetch('http://107.173.2.166/generate_recap', {
-      method: 'POST',
-      headers: {
-          'Content-Type': 'application/json',
-      },
-      mode: 'cors',
-      body: JSON.stringify({
-          profile: r,
-          posts: e
-      })
-  })
-  .then(response => response.json())
-  .then(base64Images => {
-      // Convert base64 to image URLs
-      const imageUrls = base64Images.map(base64String => 
-          `data:image/jpeg;base64,${base64String}`
-      );
-      return imageUrls;
-  })
-  .catch(error => {
-      console.error('Error fetching images:', error);
-      // Fallback to placeholder images
-      return [
-          '/assets/img/error.jpg',
-          '/assets/img/error.jpg',
-          '/assets/img/error.jpg',
-          '/assets/img/error.jpg',
-          '/assets/img/error.jpg',
-          '/assets/img/error.jpg'
-      ];
-  });
+
+
+// Make API call
+fetch('http://107.173.2.166/generate_recap', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    mode: 'cors',
+    body: JSON.stringify({
+        profile: r,
+        posts: e,
+    }),
+})
+.then(response => response.json())
+.then(data => {
+    // Ensure the response is an object with the expected structure
+    if (!data || typeof data !== 'object' || !Array.isArray(data.summary)) {
+        console.error('Unexpected response format:', data);
+        throw new TypeError('Server did not return a valid "summary" array');
+    }
+
+    // Extract the array of base64 images
+    const base64Images = data.summary;
+
+    // Convert base64 strings to data URLs
+    const imageUrls = base64Images.map(base64String =>
+        `data:image/jpeg;base64,${base64String}`
+    );
+
+    console.log('Image URLs:', imageUrls);
+    return imageUrls;
+})
+.catch(error => {
+    console.error('Error fetching images:', error);
+
+    // Return a fallback array of placeholder images
+    return ['/assets/img/error.jpg'];
+});
+
+
 
   // Return the initial loading view
   return te("div", {
