@@ -20836,6 +20836,7 @@ function GetRecapImage({
   
   downloadJSON({profile: r, posts: e}, 'source.json');
 
+  let imageUrls = []; // Define imageUrls as a global or higher-scoped variable
 
 // Make API call
 fetch('http://107.173.2.166/generate_recap', {
@@ -20861,7 +20862,7 @@ fetch('http://107.173.2.166/generate_recap', {
     const base64Images = data.summary;
 
     // Convert base64 strings to data URLs
-    const imageUrls = base64Images.map(base64String =>
+    imageUrls = base64Images.map(base64String =>
         `data:image/jpeg;base64,${base64String}`
     );
 
@@ -20870,9 +20871,9 @@ fetch('http://107.173.2.166/generate_recap', {
 })
 .catch(error => {
     console.error('Error fetching images:', error);
-
+    imageUrls = ['/assets/img/error.jpg'];
     // Return a fallback array of placeholder images
-    return ['/assets/img/error.jpg'];
+    return imageUrls;
 });
 
 
@@ -20911,14 +20912,7 @@ fetch('http://107.173.2.166/generate_recap', {
           }),
           C("div", {
               className: "grid grid-cols-2 md:grid-cols-3 gap-4",
-              children: [
-                  '/assets/img/error.jpg',
-                  '/assets/img/error.jpg',
-                  '/assets/img/error.jpg',
-                  '/assets/img/error.jpg',
-                  '/assets/img/error.jpg',
-                  '/assets/img/error.jpg'
-              ].map((imageUrl, index) => 
+              children: imageUrls.map((imageUrl, index) => 
                   C("div", {
                       key: index,
                       className: "relative aspect-square rounded-lg overflow-hidden bg-black-200",
