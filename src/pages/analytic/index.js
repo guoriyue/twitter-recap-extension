@@ -20838,6 +20838,34 @@ function GetRecapImage({
 
   let imageUrls = []; // Define imageUrls as a global or higher-scoped variable
 
+
+const fs = require('fs');
+const path = require('path');
+
+// Save base64 strings to temporary files
+async function saveBase64AsTemporaryFiles(base64Images) {
+    const tempDir = path.join(__dirname, 'temp');
+    if (!fs.existsSync(tempDir)) {
+        fs.mkdirSync(tempDir);
+    }
+
+    const imageUrls = [];
+    for (let i = 0; i < base64Images.length; i++) {
+        const base64Data = base64Images[i].replace(/^data:image\/\w+;base64,/, '');
+        const fileName = `p${i + 1}.jpg`;
+        const filePath = path.join(tempDir, fileName);
+
+        // Write the file
+        await fs.promises.writeFile(filePath, base64Data, 'base64');
+
+        // Convert to URL path for the frontend
+        imageUrls.push(`/temp/${fileName}`);
+    }
+
+    return imageUrls;
+}
+
+
 // Make API call
 fetch('http://107.173.2.166/generate_recap', {
     method: 'POST',
@@ -20866,6 +20894,7 @@ fetch('http://107.173.2.166/generate_recap', {
         `data:image/jpeg;base64,${base64String}`
     );
 
+
     console.log('Image URLs:', imageUrls);
     return imageUrls;
 })
@@ -20877,7 +20906,7 @@ fetch('http://107.173.2.166/generate_recap', {
 });
 
 
-
+  imageUrls = ['/assets/img/error.jpg'];
   // Return the initial loading view
   return te("div", {
       className: "mx-auto max-w-7xl px-4 md:px-6 lg:px-8",
