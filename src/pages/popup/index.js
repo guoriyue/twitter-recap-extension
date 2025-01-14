@@ -1505,129 +1505,129 @@ const uu = "/assets/svg/imgExtension-logo.chunk.svg",
                     })]
                 }) : f(Pe, {
                     children: [l("h4", {
-                        className: "mb-2 text-left text-[12px] font-normal text-white",
-                        children: "Username"
-                    }), f("div", {
-                        className: "mb-4 flex flex-row text-[15px] text-white",
-                        children: [f("div", {
-                            className: "mr-2 flex select-none flex-row items-center rounded-lg bg-x-twitter px-3 py-1 font-semibold",
-                            children: [l(Aa, {
-                                className: "mr-2 text-white"
-                            }), " X Twitter"]
-                        }), l("input", {
-                            className: "flex-grow border-none bg-transparent text-left focus:outline-none",
-                            value: a,
-                            placeholder: "Username",
-                            onChange: u => i(u.target.value)
-                        })]
-                    }), l("hr", {
-                        className: "mb-4 border-blue-200"
-                    }), f("h4", {
-                        className: "mb-4 text-left text-[12px] font-normal text-white",
-                        children: ["Load Data Rate (", F.exports.get(n, "[1]", 1), " Sec", F.exports.get(n, "[1]", 1) > 1 && "s", ")"]
-                    }), l("div", {
-                        className: "mb-4",
-                        children: l(Ta, {
-                            id: "single-thumb",
-                            step: 1,
-                            min: 0,
-                            max: 10,
-                            defaultValue: n,
-                            thumbsDisabled: [!0, !1],
-                            rangeSlideDisabled: !0,
-                            onInput: u => s(u)
+                            className: "mb-2 text-left text-[12px] font-normal text-white",
+                            children: "Username"
+                        }), f("div", {
+                            className: "mb-4 flex flex-row text-[15px] text-white",
+                            children: [f("div", {
+                                className: "mr-2 flex select-none flex-row items-center rounded-lg bg-x-twitter px-3 py-1 font-semibold",
+                                children: [l(Aa, {
+                                    className: "mr-2 text-white"
+                                }), " X Twitter"]
+                            }), l("input", {
+                                className: "flex-grow border-none bg-transparent text-left focus:outline-none",
+                                value: a,
+                                placeholder: "Username",
+                                onChange: u => i(u.target.value)
+                            })]
+                        }), l("hr", {
+                            className: "mb-4 border-blue-200"
+                        }), f("h4", {
+                            className: "mb-4 text-left text-[12px] font-normal text-white",
+                            children: ["Load Data Rate (", F.exports.get(n, "[1]", 1), " Sec", F.exports.get(n, "[1]", 1) > 1 && "s", ")"]
+                        }), l("div", {
+                            className: "mb-4",
+                            children: l(Ta, {
+                                id: "single-thumb",
+                                step: 1,
+                                min: 0,
+                                max: 10,
+                                defaultValue: n,
+                                thumbsDisabled: [!0, !1],
+                                rangeSlideDisabled: !0,
+                                onInput: u => s(u)
+                            })
+                        }), l("hr", {
+                            className: "mb-4 border-blue-200"
+                        }), l("h4", {
+                            className: "mb-2 text-left text-[12px] font-normal text-white",
+                            children: "From Date"
+                        }), f("div", {
+                            className: "mb-4 flex flex-row items-center text-[15px] text-white",
+                            children: [l("div", {
+                                className: "mr-2 select-none",
+                                children: l(we, {
+                                    className: "text-white"
+                                })
+                            }), f("div", {
+                                className: "grid flex-grow grid-cols-2 gap-4",
+                                children: [l("input", {
+                                    className: "border-none bg-transparent text-left focus:outline-none",
+                                    placeholder: "From Year",
+                                    type: "number",
+                                    value: o,
+                                    onChange: u => g(u.target.value),
+                                    min: 2006,
+                                    max: new Date().getFullYear()
+                                }), l("input", {
+                                    className: "border-none bg-transparent text-left focus:outline-none",
+                                    placeholder: "From Month",
+                                    type: "number",
+                                    value: d,
+                                    onChange: u => c(u.target.value),
+                                    min: 1,
+                                    max: 12
+                                })]
+                            })]
+                        }), l("h4", {
+                            className: "mb-2 text-left text-[12px] font-normal text-white",
+                            children: "To Date"
+                        }), f("div", {
+                            className: "mb-4 flex flex-row items-center text-[15px] text-white",
+                            children: [l("div", {
+                                className: "mr-2 select-none",
+                                children: l(we, {
+                                    className: "text-white"
+                                })
+                            }), f("div", {
+                                className: "grid flex-grow grid-cols-2 gap-4",
+                                children: [l("input", {
+                                    className: "border-none bg-transparent text-left focus:outline-none",
+                                    placeholder: "To Year",
+                                    type: "number",
+                                    value: T,
+                                    onChange: u => w(u.target.value),
+                                    min: o,
+                                    max: new Date().getFullYear()
+                                }), l("input", {
+                                    className: "border-none bg-transparent text-left focus:outline-none",
+                                    placeholder: "To Month",
+                                    type: "number",
+                                    value: C,
+                                    onChange: u => O(u.target.value),
+                                    min: 1,
+                                    max: 12
+                                })]
+                            })]
+                        }), $e && l("p", {
+                            className: "mb-2 text-sm text-red-500",
+                            children: $e
+                        }), l("hr", {
+                            className: "mb-4 border-blue-200"
+                        }), e ? l("button", {
+                            className: "w-full rounded-md bg-orange-main py-2 text-[15px] font-bold text-black-100 duration-300 ease-in hover:opacity-75",
+                            onClick: () => Pa(),
+                            children: "Redirect to X Twitter"
+                        }) : l("button", {
+                            className: "w-full rounded-md bg-orange-main py-2 text-[15px] font-bold text-black-100 duration-300 ease-in hover:opacity-75",
+                            onClick: () => wa(),
+                            children: "Scrape Now"
                         })
-                    }), l("hr", {
-                        className: "mb-4 border-blue-200"
-                    }), l("h4", {
-                        className: "mb-2 text-left text-[12px] font-normal text-white",
-                        children: "From Date"
-                    }), f("div", {
-                        className: "mb-4 flex flex-row items-center text-[15px] text-white",
-                        children: [l("div", {
-                            className: "mr-2 select-none",
-                            children: l(we, {
-                                className: "text-white"
-                            })
-                        }), f("div", {
-                            className: "grid flex-grow grid-cols-2 gap-4",
-                            children: [l("input", {
-                                className: "border-none bg-transparent text-left focus:outline-none",
-                                placeholder: "From Year",
-                                type: "number",
-                                value: o,
-                                onChange: u => g(u.target.value),
-                                min: 2006,
-                                max: new Date().getFullYear()
-                            }), l("input", {
-                                className: "border-none bg-transparent text-left focus:outline-none",
-                                placeholder: "From Month",
-                                type: "number",
-                                value: d,
-                                onChange: u => c(u.target.value),
-                                min: 1,
-                                max: 12
-                            })]
-                        })]
-                    }), l("h4", {
-                        className: "mb-2 text-left text-[12px] font-normal text-white",
-                        children: "To Date"
-                    }), f("div", {
-                        className: "mb-4 flex flex-row items-center text-[15px] text-white",
-                        children: [l("div", {
-                            className: "mr-2 select-none",
-                            children: l(we, {
-                                className: "text-white"
-                            })
-                        }), f("div", {
-                            className: "grid flex-grow grid-cols-2 gap-4",
-                            children: [l("input", {
-                                className: "border-none bg-transparent text-left focus:outline-none",
-                                placeholder: "To Year",
-                                type: "number",
-                                value: T,
-                                onChange: u => w(u.target.value),
-                                min: o,
-                                max: new Date().getFullYear()
-                            }), l("input", {
-                                className: "border-none bg-transparent text-left focus:outline-none",
-                                placeholder: "To Month",
-                                type: "number",
-                                value: C,
-                                onChange: u => O(u.target.value),
-                                min: 1,
-                                max: 12
-                            })]
-                        })]
-                    }), $e && l("p", {
-                        className: "mb-2 text-sm text-red-500",
-                        children: $e
-                    }), l("hr", {
-                        className: "mb-4 border-blue-200"
-                    }), e ? l("button", {
-                        className: "w-full rounded-md bg-orange-main py-2 text-[15px] font-bold text-black-100 duration-300 ease-in hover:opacity-75",
-                        onClick: () => Pa(),
-                        children: "Redirect to X Twitter"
-                    }) : l("button", {
-                        className: "w-full rounded-md bg-orange-main py-2 text-[15px] font-bold text-black-100 duration-300 ease-in hover:opacity-75",
-                        onClick: () => wa(),
-                        children: "Scrape Now"
-                    })
-                    // , l("div", {
-                    //     className: "mt-2 w-full rounded-md bg-white text-center transition hover:opacity-80",
-                    //     children: l("a", {
-                    //         href: "https://www.buymeacoffee.com/",
-                    //         target: "_blank",
-                    //         rel: "noreferrer",
-                    //         children: l("img", {
-                    //             src: "https://cdn.buymeacoffee.com/buttons/default-white.png",
-                    //             alt: "Buy Me A Coffee",
-                    //             height: "41",
-                    //             width: "174",
-                    //             className: "mx-auto rounded-md"
-                    //         })
-                    //     })
-                    // })
+                        // , l("div", {
+                        //     className: "mt-2 w-full rounded-md bg-white text-center transition hover:opacity-80",
+                        //     children: l("a", {
+                        //         href: "https://www.buymeacoffee.com/",
+                        //         target: "_blank",
+                        //         rel: "noreferrer",
+                        //         children: l("img", {
+                        //             src: "https://cdn.buymeacoffee.com/buttons/default-white.png",
+                        //             alt: "Buy Me A Coffee",
+                        //             height: "41",
+                        //             width: "174",
+                        //             className: "mx-auto rounded-md"
+                        //         })
+                        //     })
+                        // })
                     ]
                 })]
             })]
