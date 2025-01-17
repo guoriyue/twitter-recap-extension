@@ -20881,14 +20881,20 @@ function GetRecapImage({ profile: r, post: e }) {
                 children: "Summary Images"
             }),
             C("div", {
-                className: "flex items-center justify-center h-64",
-                children: C("p", {
-                    className: "text-white",
-                    children: "Loading images..."
-                })
+                className: "grid grid-cols-2 gap-4", // Use a grid layout for 4 images
+                children: Array(4).fill(null).map((_, index) =>
+                    C("div", {
+                        className: "flex items-center justify-center h-32 bg-gray-800 rounded", // Placeholder style for each image
+                        children: C("p", {
+                            className: "text-white text-sm",
+                            children: `Loading image ${index + 1}...`
+                        })
+                    })
+                )
             })
         ]
-    });
+    });    
+
 
     const downloadJSON = (data, filename) => {
         const blob = new Blob([JSON.stringify(data, null, 2)], {
@@ -20910,45 +20916,64 @@ function GetRecapImage({ profile: r, post: e }) {
 
     let imageUrls = [];
 
-    // Handle the asynchronous `fetch` using an immediately invoked function expression (IIFE)
-    (async () => {
-        try {
-            // Fetch data
-            const response = await fetch('http://107.173.2.166/generate_recap', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                mode: 'cors',
-                body: JSON.stringify({ profile: r, posts: e }),
-            });
+    // // Handle the asynchronous `fetch` using an immediately invoked function expression (IIFE)
+    // (async () => {
+    //     try {
+    //         // Fetch data
+    //         const response = await fetch('http://107.173.2.166/generate_recap', {
+    //             method: 'POST',
+    //             headers: {
+    //                 'Content-Type': 'application/json',
+    //             },
+    //             mode: 'cors',
+    //             body: JSON.stringify({ profile: r, posts: e }),
+    //         });
 
-            if (!response.ok) {
-                throw new Error(`Server error: ${response.status}`);
-            }
+    //         if (!response.ok) {
+    //             throw new Error(`Server error: ${response.status}`);
+    //         }
 
-            const data = await response.json();
+    //         const data = await response.json();
 
-            // Validate response format
-            if (!data || typeof data !== 'object' || !Array.isArray(data.summary)) {
-                console.error('Unexpected response format:', data);
-                throw new TypeError('Server did not return a valid "summary" array');
-            }
+    //         // Validate response format
+    //         if (!data || typeof data !== 'object' || !Array.isArray(data.summary)) {
+    //             console.error('Unexpected response format:', data);
+    //             throw new TypeError('Server did not return a valid "summary" array');
+    //         }
 
-            // Populate imageUrls
+    //         // Populate imageUrls
+    //         imageUrls = data.summary.map(base64String =>
+    //             `data:image/png;base64,${base64String}`
+    //         );
+
+    //         console.log("reach here 2");
+    //     } catch (error) {
+    //         console.error('Error fetching images:', error);
+    //         imageUrls = ['/assets/img/error.jpg'];
+    //     }
+
+    //     // Trigger a re-render or update state if necessary
+    //     // Here, you would update the state in a React component, for example.
+    // })();
+
+    try {
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', 'http://107.173.2.166/generate_recap', false); // `false` makes it synchronous
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(JSON.stringify({ profile: r, posts: e }));
+    
+        if (xhr.status >= 200 && xhr.status < 300) {
+            const data = JSON.parse(xhr.responseText);
             imageUrls = data.summary.map(base64String =>
                 `data:image/png;base64,${base64String}`
             );
-
-            console.log("reach here 2");
-        } catch (error) {
-            console.error('Error fetching images:', error);
-            imageUrls = ['/assets/img/error.jpg'];
+        } else {
+            throw new Error(`Server error: ${xhr.status}`);
         }
-
-        // Trigger a re-render or update state if necessary
-        // Here, you would update the state in a React component, for example.
-    })();
+    } catch (error) {
+        console.error('Error fetching images:', error);
+        imageUrls = ['/assets/img/error.jpg'];
+    }
 
     console.log("reach here 3");
 
