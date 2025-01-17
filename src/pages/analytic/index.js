@@ -20868,6 +20868,10 @@ function O8(e) {
 
 
 function GetRecapImage({ profile: r, post: e }) {
+    if (!r || Object.keys(r).length === 0 || !e || e.length === 0) {
+        console.log("Empty profile or post, skipping rendering");
+        return null; // Render nothing
+    }
     // Initial render with loading state
     const loadingView = te("div", {
         className: "mx-auto max-w-7xl px-4 md:px-6 lg:px-8",
@@ -20949,6 +20953,7 @@ function GetRecapImage({ profile: r, post: e }) {
     console.log("reach here 3");
 
     imageUrls.forEach(imageUrl => console.log(imageUrl));
+
     // Return the initial loading view
     return te("div", {
         className: "mx-auto max-w-7xl px-4 md:px-6 lg:px-8",
@@ -20979,7 +20984,6 @@ function GetRecapImage({ profile: r, post: e }) {
         ]
     });
 }
-
 
 function A8({
     post: e
@@ -26485,6 +26489,9 @@ const ej = () => {
     const d = () => {
         console.log("Export CSV")
     };
+    
+    
+
     return te("div", {
         className: "App",
         children: [C(r1, {
