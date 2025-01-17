@@ -2463,7 +2463,7 @@ function r1({
                         }), C("a", {
                             target: "_blank",
                             rel: "noopener noreferrer",
-                            href: "https://nighthustle.co",
+                            // href: "https://nighthustle.co",
                             className: "text-[25px] font-semibold",
                             children: "X Twitter Recap"
                         })]
@@ -26293,7 +26293,7 @@ function QL() {
                         })]
                     }), te("p", {
                         className: "mt-6 text-sm text-white sm:mt-0",
-                        children: ["Copyright \xA9 ", new Date().getFullYear(), " Nighthustle. All rights reserved."]
+                        // children: ["Copyright \xA9 ", new Date().getFullYear(), " Nighthustle. All rights reserved."]
                     })]
                 })
             })

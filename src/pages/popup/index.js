@@ -1472,7 +1472,7 @@ const uu = "/assets/svg/imgExtension-logo.chunk.svg",
                     })
                 }), l("div", {}), l("div", {
                     children: l("a", {
-                        href: "https://nighthustle.co",
+                        // href: "https://nighthustle.co",
                         children: l("img", {
                             className: "ml-auto",
                             src: Ca,
