@@ -1609,10 +1609,10 @@ const uu = "/assets/svg/imgExtension-logo.chunk.svg",
                             onClick: () => Pa(),
                             children: "Redirect to X Twitter"
                         }) : l("button", {
-                            className: "w-full rounded-md bg-orange-main py-2 text-[15px] font-bold text-black-100 duration-300 ease-in hover:opacity-75",
+                            className: "w-full rounded-md bg-orange-main py-2 text-[15px] font-semibold text-cyan-500 duration-300 ease-in hover:opacity-75",
                             onClick: () => wa(),
                             children: "Scrape Now"
-                        })
+                        })                        
                         // , l("div", {
                         //     className: "mt-2 w-full rounded-md bg-white text-center transition hover:opacity-80",
                         //     children: l("a", {

@@ -2483,7 +2483,7 @@ function r1({
                     className: "flex items-center gap-x-4 md:gap-x-4",
                     children: [C(Rs, {
                             variant: "outline",
-                            color: "orange",
+                            color: "cyan",
                             onClick: () => a(),
                             children: C("span", {
                                 children: "Clear Storage"
@@ -2493,7 +2493,7 @@ function r1({
                             headers: t1,
                             filename: `${mt.exports.get(i,"author.additionalName","export")}.csv`,
                             children: C(Rs, {
-                                color: "orange",
+                                color: "cyan",
                                 onClick: () => r(),
                                 children: C("span", {
                                     children: "Export CSV"
@@ -20730,21 +20730,21 @@ function GetRecapImage({ profile: r, post: e }) {
         return null; // Render nothing
     }  
 
-    const downloadJSON = (data, filename) => {
-        const blob = new Blob([JSON.stringify(data, null, 2)], {
-            type: 'application/json'
-        });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = filename;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
-    };
+    // const downloadJSON = (data, filename) => {
+    //     const blob = new Blob([JSON.stringify(data, null, 2)], {
+    //         type: 'application/json'
+    //     });
+    //     const url = URL.createObjectURL(blob);
+    //     const a = document.createElement('a');
+    //     a.href = url;
+    //     a.download = filename;
+    //     document.body.appendChild(a);
+    //     a.click();
+    //     document.body.removeChild(a);
+    //     URL.revokeObjectURL(url);
+    // };
 
-    downloadJSON({ profile: r, posts: e }, 'source.json');
+    // downloadJSON({ profile: r, posts: e }, 'source.json');
 
 
     let imageUrls = [];
@@ -20784,27 +20784,29 @@ function GetRecapImage({ profile: r, post: e }) {
                 ]
             }),
             C("div", {
-                className: "grid grid-cols-2 gap-4", // Enforce a 2x2 grid
-                children: Array(4).fill(null).map((_, index) => {
-                    const imageUrl = imageUrls[index];
-                    return C("div", {
-                        key: index,
-                        className: "relative aspect-square rounded-lg overflow-hidden bg-black-200",
-                        children: imageUrl
-                            ? C("img", {
-                                src: imageUrl,
-                                alt: `Summary ${index + 1}`,
-                                className: "w-full h-full object-cover"
-                            })
-                            : C("p", {
-                                className: "text-center text-white text-sm",
-                                children: "No image available"
-                            })
-                    });
-                })
+                className: "relative w-full h-64 overflow-hidden", // Single image container
+                children: [
+                    currentImageIndex > 0 &&
+                    C("button", {
+                        className: "absolute top-1/2 left-2 transform -translate-y-1/2 bg-gray-800 text-white px-2 py-1 rounded hover:bg-gray-700",
+                        onClick: () => setCurrentImageIndex(currentImageIndex - 1),
+                        children: "<"
+                    }),
+                    C("img", {
+                        src: imageUrls[currentImageIndex],
+                        alt: `Summary ${currentImageIndex + 1}`,
+                        className: "w-full h-full object-cover"
+                    }),
+                    currentImageIndex < imageUrls.length - 1 &&
+                    C("button", {
+                        className: "absolute top-1/2 right-2 transform -translate-y-1/2 bg-gray-800 text-white px-2 py-1 rounded hover:bg-gray-700",
+                        onClick: () => setCurrentImageIndex(currentImageIndex + 1),
+                        children: ">"
+                    })
+                ]
             })
         ]
-    });    
+    });     
 }
 
 function A8({
@@ -26293,7 +26295,7 @@ function QL() {
                         })]
                     }), te("p", {
                         className: "mt-6 text-sm text-white sm:mt-0",
-                        // children: ["Copyright \xA9 ", new Date().getFullYear(), " Nighthustle. All rights reserved."]
+                        children: ["Copyright \xA9 ", new Date().getFullYear(), " Nighthustle. All rights reserved."]
                     })]
                 })
             })
