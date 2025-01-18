@@ -1482,10 +1482,14 @@ const uu = "/assets/svg/imgExtension-logo.chunk.svg",
                 })]
             }), f("div", {
                 className: "w-full flex-grow rounded-md bg-black-200 p-[14px]",
-                children: [l("h3", {
+                children: [
+                    
+                l("h3", {
                     className: "mb-2 text-left text-[20px] font-medium text-white",
                     children: "X Twitter Recap"
-                }), D ? f(Pe, {
+                }), 
+                
+                D ? f(Pe, {
                     children: [f("div", {
                         className: "h-80 w-full overflow-y-auto text-left text-[10px] text-white",
                         children: [m.map(u => f("span", {

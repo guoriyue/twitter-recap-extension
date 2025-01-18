@@ -2458,9 +2458,11 @@ function r1({
                     className: "flex items-center md:gap-x-12",
                     children: [te("span", {
                         className: "flex flex-row items-center duration-300 ease-in hover:opacity-75",
-                        children: [C(Yp, {
-                            className: "mr-2 h-6 w-auto"
-                        }), C("a", {
+                        children: [
+                        // C(Yp, {
+                        //     className: "mr-2 h-6 w-auto"
+                        // }), 
+                        C("a", {
                             target: "_blank",
                             rel: "noopener noreferrer",
                             // href: "https://nighthustle.co",
@@ -2482,7 +2484,7 @@ function r1({
                 }), te("div", {
                     className: "flex items-center gap-x-4 md:gap-x-4",
                     children: [C(Rs, {
-                            variant: "outline",
+                            // variant: "outline",
                             color: "cyan",
                             onClick: () => a(),
                             children: C("span", {
@@ -20780,33 +20782,60 @@ function GetRecapImage({ profile: r, post: e }) {
                     C("h3", {
                         className: "text-left text-xl font-medium leading-6 text-white",
                         children: "Summary Images"
+                    }),
+                    C("button", {
+                        onClick: () => {
+                            // Get the current URL or specific content you want to share
+                            const text = "Check out my X Twitter Recap!"; // Customize share text
+                            const url = window.location.href;
+
+                            // Include all base64 images from imageUrls
+                            const imagesParam = imageUrls.slice(0, 4).join(","); // Join images into a single string, limited to 4
+                            const encodedImages = encodeURIComponent(imagesParam); // Encode images for URL
+                            
+                            // Construct the Twitter sharing URL
+                            const xUrl = `https://x.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}&images=${encodedImages}`;
+
+                            // Open the sharing URL in a new tab
+                            window.open(xUrl, "_blank");
+                        },
+                        className: "inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-[#1DA1F2] rounded-md hover:bg-[#1a8cd8] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#1DA1F2]",
+                        children: [
+                            C("svg", {
+                                className: "w-5 h-5 mr-2",
+                                fill: "currentColor",
+                                viewBox: "0 0 24 24",
+                                children: C("path", {
+                                    d: "M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"
+                                })
+                            }),
+                            "Share on Twitter"
+                        ]
                     })
                 ]
             }),
             C("div", {
-                className: "relative w-full h-64 overflow-hidden", // Single image container
-                children: [
-                    currentImageIndex > 0 &&
-                    C("button", {
-                        className: "absolute top-1/2 left-2 transform -translate-y-1/2 bg-gray-800 text-white px-2 py-1 rounded hover:bg-gray-700",
-                        onClick: () => setCurrentImageIndex(currentImageIndex - 1),
-                        children: "<"
-                    }),
-                    C("img", {
-                        src: imageUrls[currentImageIndex],
-                        alt: `Summary ${currentImageIndex + 1}`,
-                        className: "w-full h-full object-cover"
-                    }),
-                    currentImageIndex < imageUrls.length - 1 &&
-                    C("button", {
-                        className: "absolute top-1/2 right-2 transform -translate-y-1/2 bg-gray-800 text-white px-2 py-1 rounded hover:bg-gray-700",
-                        onClick: () => setCurrentImageIndex(currentImageIndex + 1),
-                        children: ">"
-                    })
-                ]
+                className: "grid grid-cols-4 gap-4", // Ensure all 4 images are in one row
+                children: Array(4).fill(null).map((_, index) => {
+                    const imageUrl = imageUrls[index];
+                    return C("div", {
+                        key: index,
+                        className: "relative aspect-square rounded-lg overflow-hidden bg-black-200",
+                        children: imageUrl
+                            ? C("img", {
+                                src: imageUrl,
+                                alt: `Summary ${index + 1}`,
+                                className: "w-full h-full object-cover"
+                            })
+                            : C("p", {
+                                className: "text-center text-white text-sm",
+                                children: "No image available"
+                            })
+                    });
+                })
             })
         ]
-    });     
+    });      
 }
 
 function A8({
