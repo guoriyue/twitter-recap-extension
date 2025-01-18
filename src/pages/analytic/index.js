@@ -2498,7 +2498,7 @@ function r1({
                                 color: "cyan",
                                 onClick: () => r(),
                                 children: C("span", {
-                                    children: "Export CSV"
+                                    children: "Export Raw CSV"
                                 })
                             })
                         }),
@@ -20785,33 +20785,75 @@ function GetRecapImage({ profile: r, post: e }) {
                     }),
                     C("button", {
                         onClick: () => {
-                            // Get the current URL or specific content you want to share
-                            const text = "Check out my X Twitter Recap!"; // Customize share text
-                            const url = window.location.href;
-
-                            // Include all base64 images from imageUrls
-                            const imagesParam = imageUrls.slice(0, 4).join(","); // Join images into a single string, limited to 4
-                            const encodedImages = encodeURIComponent(imagesParam); // Encode images for URL
-                            
-                            // Construct the Twitter sharing URL
-                            const xUrl = `https://x.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}&images=${encodedImages}`;
-
-                            // Open the sharing URL in a new tab
-                            window.open(xUrl, "_blank");
+                            // Iterate through all image URLs in the list
+                            imageUrls.forEach((base64Image, index) => {
+                                // Detect the image type from the Base64 string
+                                const matches = base64Image.match(/^data:image\/(png|jpeg);base64,/);
+                                const imageType = matches ? matches[1] : "png"; // Default to png if no type is detected
+                    
+                                // Remove the Base64 header
+                                const base64Data = base64Image.replace(/^data:image\/(png|jpeg);base64,/, "");
+                    
+                                // Convert the Base64 string to a Blob
+                                const blob = new Blob([Uint8Array.from(atob(base64Data), c => c.charCodeAt(0))], { type: `image/${imageType}` });
+                    
+                                // Create a temporary URL for the Blob
+                                const url = URL.createObjectURL(blob);
+                    
+                                // Create a temporary <a> element for the download
+                                const a = document.createElement("a");
+                                a.href = url;
+                                a.download = `image_${index + 1}.${imageType}`; // Generate a unique filename
+                                document.body.appendChild(a);
+                                a.click();
+                                document.body.removeChild(a);
+                    
+                                // Revoke the object URL to free memory
+                                URL.revokeObjectURL(url);
+                            });
                         },
-                        className: "inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-[#1DA1F2] rounded-md hover:bg-[#1a8cd8] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#1DA1F2]",
+                        className: "inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600",
                         children: [
                             C("svg", {
                                 className: "w-5 h-5 mr-2",
                                 fill: "currentColor",
                                 viewBox: "0 0 24 24",
                                 children: C("path", {
-                                    d: "M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"
+                                    d: "M12 2a10 10 0 100 20 10 10 0 000-20zm-1 14.5v-5h-2v-2h2v-2c0-1.11.89-2 2-2h2v2h-2v2h2v2h-2v5h-2zm-1 0h2-2z"
                                 })
                             }),
-                            "Share on Twitter"
+                            "Download Image"
                         ]
-                    })
+                    })                    
+                    // C("button", {
+                    //     onClick: () => {
+                    //         // Get the current URL or specific content you want to share
+                    //         const text = "Check out my X Twitter Recap!"; // Customize share text
+                    //         const url = window.location.href;
+
+                    //         // Include all base64 images from imageUrls
+                    //         const imagesParam = imageUrls.slice(0, 4).join(","); // Join images into a single string, limited to 4
+                    //         const encodedImages = encodeURIComponent(imagesParam); // Encode images for URL
+                            
+                    //         // Construct the Twitter sharing URL
+                    //         const xUrl = `https://x.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}&images=${encodedImages}`;
+
+                    //         // Open the sharing URL in a new tab
+                    //         window.open(xUrl, "_blank");
+                    //     },
+                    //     className: "inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-[#1DA1F2] rounded-md hover:bg-[#1a8cd8] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#1DA1F2]",
+                    //     children: [
+                    //         C("svg", {
+                    //             className: "w-5 h-5 mr-2",
+                    //             fill: "currentColor",
+                    //             viewBox: "0 0 24 24",
+                    //             children: C("path", {
+                    //                 d: "M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"
+                    //             })
+                    //         }),
+                    //         "Share on Twitter"
+                    //     ]
+                    // })
                 ]
             }),
             C("div", {
