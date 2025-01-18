@@ -20857,25 +20857,21 @@ function GetRecapImage({ profile: r, post: e }) {
                 ]
             }),
             C("div", {
-                className: "grid grid-cols-4 gap-4", // Ensure all 4 images are in one row
-                children: Array(4).fill(null).map((_, index) => {
-                    const imageUrl = imageUrls[index];
-                    return C("div", {
-                        key: index,
-                        className: "relative aspect-square rounded-lg overflow-hidden bg-black-200",
-                        children: imageUrl
-                            ? C("img", {
-                                src: imageUrl,
-                                alt: `Summary ${index + 1}`,
-                                className: "w-full h-full object-cover"
-                            })
-                            : C("p", {
-                                className: "text-center text-white text-sm",
-                                children: "No image available"
-                            })
-                    });
+                className: "flex justify-center", // Center the single image
+                children: C("div", {
+                    className: "relative aspect-square rounded-lg overflow-hidden bg-black-200",
+                    children: imageUrls[0]
+                        ? C("img", {
+                            src: imageUrls[0],
+                            alt: "Summary 1",
+                            className: "w-full h-full object-cover"
+                        })
+                        : C("p", {
+                            className: "text-center text-white text-sm",
+                            children: "No image available"
+                        })
                 })
-            })
+            })            
         ]
     });      
 }
